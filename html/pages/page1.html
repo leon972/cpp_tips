@@ -1,0 +1,176 @@
+<html>
+<head>
+	<title>Data types</title>
+</head>
+<body>
+	<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
+<span style="color: #888888"> * C++ Data types</span>
+<span style="color: #888888"> * C++20 compiler required</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #888888">/* </span>
+<span style="color: #888888"> * File:   main.cpp</span>
+<span style="color: #888888"> * Created on 20 gennaio 2023, 19:07</span>
+<span style="color: #888888"> */</span>
+
+
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+
+constexpr <span style="color: #008800; font-weight: bold">auto</span> a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">9</span> <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">8</span>;
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">implicit_type_conversion</span>();
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">explicit_type_conversion</span>();
+
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * Test data types</span>
+<span style="color: #888888"> */</span>
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+
+
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;Size of following Datatypes in bytes: </span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;char : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">char</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;unsigned int : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">unsigned</span> <span style="color: #333399; font-weight: bold">int</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;short int : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">short</span> <span style="color: #333399; font-weight: bold">int</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;long int : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;unsigned short int : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">unsigned</span> <span style="color: #333399; font-weight: bold">short</span> <span style="color: #333399; font-weight: bold">int</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;unsigned long int : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">unsigned</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;long long int : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;unsigned long long int : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">unsigned</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">int</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;signed char : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">signed</span> <span style="color: #333399; font-weight: bold">char</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;unsigned char : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">unsigned</span> <span style="color: #333399; font-weight: bold">char</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;wchar_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">wchar_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;float : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">float</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;double : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">double</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;pointers&quot;</span> <span style="color: #333333">&lt;&lt;</span> endl;
+
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;char* :&quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">*</span>) <span style="color: #333333">&lt;&lt;</span> endl; <span style="color: #888888">//8 on 64 bit machines</span>
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int* :&quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>) <span style="color: #333333">&lt;&lt;</span> endl; <span style="color: #888888">//8 on 64 bit machines</span>
+
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;New C++11 fixed width integers&quot;</span> <span style="color: #333333">&lt;&lt;</span> endl;
+    
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int8_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int8_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int16_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int16_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int32_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int32_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int16_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int16_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int32_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int32_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int64_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int64_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;uint8_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">uint8_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;uint16_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">uint16_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;uint32_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">uint32_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;uint16_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">uint16_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;uint32_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">uint32_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;uint64_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">uint64_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;Fastest signed integers&quot;</span> <span style="color: #333333">&lt;&lt;</span> endl;
+
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_fast8_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_fast8_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_fast16_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_fast16_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_fast32_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_fast32_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_fast64_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_fast64_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;Smallest signed integers&quot;</span> <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_least8_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_least8_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_least16_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_least16_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_least32_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_least32_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_least64_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_least64_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    
+    implicit_type_conversion();
+    explicit_type_conversion();
+
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+
+}
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">implicit_type_conversion</span>()
+{
+    <span style="color: #888888">//bool -&gt; char -&gt; short int -&gt; int -&gt; </span>
+
+    <span style="color: #888888">//unsigned int -&gt; long -&gt; unsigned -&gt; </span>
+
+    <span style="color: #888888">//long long -&gt; float -&gt; double -&gt; long double</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Implicit type conversion&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #333399; font-weight: bold">char</span> a<span style="color: #333333">=</span><span style="color: #0044DD">&#39;A&#39;</span>;    
+    <span style="color: #333399; font-weight: bold">int</span> b<span style="color: #333333">=</span>a;
+    
+    <span style="color: #888888">//char converted to int </span>
+    cout<span style="color: #333333">&lt;&lt;</span>b<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints 65 (ASCII code of &#39;A&#39;)</span>
+    
+    <span style="color: #333399; font-weight: bold">int</span> c<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">9</span>;
+    
+    <span style="color: #888888">//converts int to double</span>
+    <span style="color: #333399; font-weight: bold">double</span> res<span style="color: #333333">=</span>c<span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">2.0</span>;
+    cout<span style="color: #333333">&lt;&lt;</span>res<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #333399; font-weight: bold">unsigned</span> <span style="color: #333399; font-weight: bold">char</span> a1<span style="color: #333333">=</span><span style="color: #0044DD">&#39;B&#39;</span>;
+    <span style="color: #333399; font-weight: bold">int</span> b1<span style="color: #333333">=</span>a1;
+    
+    cout<span style="color: #333333">&lt;&lt;</span>b1<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints 66</span>
+    
+    <span style="color: #333399; font-weight: bold">int_fast16_t</span> i1<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">100</span>;
+    
+    <span style="color: #888888">//implicit conversion from int_fast16_t to double</span>
+    <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">double</span> dbl<span style="color: #333333">=</span>i1<span style="color: #333333">+</span><span style="color: #6600EE; font-weight: bold">0.01</span>;
+    
+    cout<span style="color: #333333">&lt;&lt;</span>dbl<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #333399; font-weight: bold">int</span> u<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">11</span>;
+    
+    <span style="color: #888888">//truncation: no conversion    </span>
+    cout<span style="color: #333333">&lt;&lt;</span>u<span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">2</span><span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #008800; font-weight: bold">auto</span> y1<span style="color: #333333">=</span>u<span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">2</span>;  <span style="color: #888888">//y1 is of type int</span>
+    cout<span style="color: #333333">&lt;&lt;</span>y1<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #008800; font-weight: bold">auto</span> y2<span style="color: #333333">=</span>u<span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">2.0</span>; <span style="color: #888888">//convert to double</span>
+    
+    cout<span style="color: #333333">&lt;&lt;</span>y2<span style="color: #333333">&lt;&lt;</span>endl;
+    cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(y2)<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #008800; font-weight: bold">auto</span> y3<span style="color: #333333">=</span>u<span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">2.0f</span>; <span style="color: #888888">//convert to float</span>
+    cout<span style="color: #333333">&lt;&lt;</span>y3<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot; &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(y3)<span style="color: #333333">&lt;&lt;</span>endl;  
+    
+    <span style="color: #888888">//implicit int to char</span>
+    <span style="color: #333399; font-weight: bold">int</span> a2<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">65</span>;
+    <span style="color: #333399; font-weight: bold">char</span> b2<span style="color: #333333">=</span>a1;  
+    cout<span style="color: #333333">&lt;&lt;</span>b2<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints  &#39;A&#39;</span>
+    
+    
+}
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">explicit_type_conversion</span>()
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Explicit type conversion&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #888888">//convert larger sizes to smaller sizes</span>
+    <span style="color: #333399; font-weight: bold">double</span> pi<span style="color: #333333">=</span><span style="color: #6600EE; font-weight: bold">3.1415</span>;
+    
+    cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">static_cast</span><span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">int</span><span style="color: #333333">&gt;</span>(pi)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints 3 converts double to int</span>
+    
+    <span style="color: #333399; font-weight: bold">double</span> x<span style="color: #333333">=</span><span style="color: #6600EE; font-weight: bold">65.9123236</span>;
+    
+    cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">static_cast</span><span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">&gt;</span>(x)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints A truncation to char</span>
+    
+    <span style="color: #888888">//no needs static_cast</span>
+    <span style="color: #333399; font-weight: bold">char</span> t<span style="color: #333333">=</span>x;
+    cout<span style="color: #333333">&lt;&lt;</span>t<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #333399; font-weight: bold">int16_t</span> v1<span style="color: #333333">=-</span><span style="color: #0000DD; font-weight: bold">890</span>;    
+    <span style="color: #333399; font-weight: bold">uint16_t</span> v2<span style="color: #333333">=</span>v1;
+    cout<span style="color: #333333">&lt;&lt;</span>v2<span style="color: #333333">&lt;&lt;</span>endl;  
+    
+    <span style="color: #333399; font-weight: bold">char</span> h<span style="color: #333333">=</span><span style="color: #0044DD">&#39;H&#39;</span>;    
+    <span style="color: #333399; font-weight: bold">void</span> <span style="color: #333333">*</span>ptr<span style="color: #333333">=&amp;</span>h;    
+    cout<span style="color: #333333">&lt;&lt;</span>ptr<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    
+}
+</pre></div>
+
+</body>
+</html>
