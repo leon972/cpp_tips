@@ -10,6 +10,8 @@
 
 <span style="color: #888888">/* </span>
 <span style="color: #888888"> * File:   main.cpp</span>
+<span style="color: #888888"> * Author: leonardo</span>
+<span style="color: #888888"> *</span>
 <span style="color: #888888"> * Created on 20 gennaio 2023, 19:07</span>
 <span style="color: #888888"> */</span>
 
@@ -80,6 +82,31 @@ constexpr <span style="color: #008800; font-weight: bold">auto</span> a <span st
     cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_least16_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_least16_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
     cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_least32_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_least32_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
     cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;int_least64_t : &quot;</span> <span style="color: #333333">&lt;&lt;</span> <span style="color: #008800; font-weight: bold">sizeof</span> (<span style="color: #333399; font-weight: bold">int_least64_t</span>) <span style="color: #333333">&lt;&lt;</span> endl;
+    
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Pointers and arrays&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;char * : &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(<span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">*</span>)<span style="color: #333333">&lt;&lt;</span>endl;
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;int * : &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(<span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>)<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Size of data&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #333399; font-weight: bold">int</span> arr[]<span style="color: #333333">=</span>{<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5</span>};
+    <span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>arr2<span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">int</span>[<span style="color: #0000DD; font-weight: bold">90</span>];
+    <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333333">*</span>arr3<span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">long</span> <span style="color: #333399; font-weight: bold">long</span>[<span style="color: #0000DD; font-weight: bold">100</span>];
+    
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;size of array of int : &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(arr)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints array number of elements * element size in bytes (5 *sizeof(int)) = 20</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;sizeof int array pointer : &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(arr2)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints 8 on 64 bit machine</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;sizeof long long array pointer : &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(arr3)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//print 8 on 64 bit machine</span>
+    
+    string str<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Test string&quot;</span>s;    
+    string <span style="color: #333333">&amp;</span>str2<span style="color: #333333">=</span>str;
+    
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;string size : &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(str)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints 32 (gcc on linux 64 bit)</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;string ref size : &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(str2)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints 32 (gcc on linux 64 bit)</span>
+    
+    
+    <span style="color: #008800; font-weight: bold">delete</span>[] arr2;arr2<span style="color: #333333">=</span>nullptr;       
+    <span style="color: #008800; font-weight: bold">delete</span>[] arr3;arr3<span style="color: #333333">=</span>nullptr;
     
     implicit_type_conversion();
     explicit_type_conversion();
@@ -171,6 +198,7 @@ constexpr <span style="color: #008800; font-weight: bold">auto</span> a <span st
     
 }
 </pre></div>
+
 
 </body>
 </html>

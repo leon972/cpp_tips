@@ -12,7 +12,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>main.cpp</itemPath>
+      <itemPath>hellocpp20_main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -36,10 +36,10 @@
       </toolsSet>
       <compileType>
         <ccTool>
-          <commandLine>-std=c++2a</commandLine>
+          <commandLine>-std=c++20</commandLine>
         </ccTool>
       </compileType>
-      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="hellocpp20_main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -54,7 +54,6 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
-          <standard>11</standard>
           <commandLine>-std=c++2a</commandLine>
         </ccTool>
         <fortranCompilerTool>
@@ -64,7 +63,7 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="hellocpp20_main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

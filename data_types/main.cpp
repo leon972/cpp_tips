@@ -78,6 +78,31 @@ int main(int argc, char** argv) {
     cout << "int_least32_t : " << sizeof (int_least32_t) << endl;
     cout << "int_least64_t : " << sizeof (int_least64_t) << endl;
     
+    cout<<"Pointers and arrays"<<endl;
+    cout<<"char * : "<<sizeof(char*)<<endl;
+    cout<<"int * : "<<sizeof(int *)<<endl;
+    
+    
+    cout<<"Size of data"<<endl;
+    
+    int arr[]={1,2,3,4,5};
+    int *arr2=new int[90];
+    long long *arr3=new long long[100];
+    
+    cout<<"size of array of int : "<<sizeof(arr)<<endl; //prints array number of elements * element size in bytes (5 *sizeof(int)) = 20
+    cout<<"sizeof int array pointer : "<<sizeof(arr2)<<endl; //prints 8 on 64 bit machine
+    cout<<"sizeof long long array pointer : "<<sizeof(arr3)<<endl; //print 8 on 64 bit machine
+    
+    string str="Test string"s;    
+    string &str2=str;
+    
+    cout<<"string size : "<<sizeof(str)<<endl; //prints 32 (gcc on linux 64 bit)
+    cout<<"string ref size : "<<sizeof(str2)<<endl; //prints 32 (gcc on linux 64 bit)
+    
+    
+    delete[] arr2;arr2=nullptr;       
+    delete[] arr3;arr3=nullptr;
+    
     implicit_type_conversion();
     explicit_type_conversion();
 
