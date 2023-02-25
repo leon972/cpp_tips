@@ -1,0 +1,137 @@
+<html>
+    <head><title>Function pointers</title></head>
+    <body>
+        <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*********************************</span>
+<span style="color: #888888"> * Function pointers </span>
+<span style="color: #888888">**********************************/</span>
+
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">fn_square</span>(<span style="color: #333399; font-weight: bold">int</span> x)
+{
+    <span style="color: #008800; font-weight: bold">return</span> x<span style="color: #333333">*</span>x;
+}
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">fn_cube</span>(<span style="color: #333399; font-weight: bold">int</span> x)
+{
+    <span style="color: #008800; font-weight: bold">return</span> x<span style="color: #333333">*</span>x<span style="color: #333333">*</span>x;
+}
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">display</span>(<span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">*</span> text)
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;display:&quot;</span><span style="color: #333333">&lt;&lt;</span>text<span style="color: #333333">&lt;&lt;</span>endl;
+}
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * A function that accept as pointer to function that accept and int and return an int and an int as second argument</span>
+<span style="color: #888888">*/</span>
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">use_function</span>(<span style="color: #333399; font-weight: bold">int</span> (<span style="color: #333333">*</span>ptr)(<span style="color: #333399; font-weight: bold">int</span>),<span style="color: #333399; font-weight: bold">int</span> value)
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;il valore restituito è:&quot;</span><span style="color: #333333">&lt;&lt;</span>ptr(value)<span style="color: #333333">&lt;&lt;</span>endl;
+}
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * Array of pointers to functions that accept an int and return an int</span>
+<span style="color: #888888">*/</span>
+<span style="color: #333399; font-weight: bold">int</span> (<span style="color: #333333">*</span>fun_ptr_array[<span style="color: #0000DD; font-weight: bold">2</span>])(<span style="color: #333399; font-weight: bold">int</span>);
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> typedef a pointer to a function that accepts an int and return an int</span>
+<span style="color: #888888">*/</span>
+
+<span style="color: #008800; font-weight: bold">typedef</span> <span style="color: #0066BB; font-weight: bold">int</span> (<span style="color: #333333">*</span>INT_FUNCTION)(<span style="color: #333399; font-weight: bold">int</span>);
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * A function that accepts and int and return a function pointer to a function that</span>
+<span style="color: #888888"> * accepts and int and return an int</span>
+<span style="color: #888888">*/</span>
+
+<span style="color: #333399; font-weight: bold">int</span> (<span style="color: #333333">*</span>(choose_function(<span style="color: #333399; font-weight: bold">int</span> id)))(<span style="color: #333399; font-weight: bold">int</span>)
+{
+    <span style="color: #008800; font-weight: bold">switch</span> (id)
+    {
+        <span style="color: #008800; font-weight: bold">case</span> <span style="color: #0000DD; font-weight: bold">0</span>:
+        <span style="color: #008800; font-weight: bold">return</span> fn_square;
+        <span style="color: #008800; font-weight: bold">case</span> <span style="color: #0000DD; font-weight: bold">1</span>:
+        <span style="color: #008800; font-weight: bold">return</span> fn_cube;
+        <span style="color: #997700; font-weight: bold">default:</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>; <span style="color: #888888">//id non valido</span>
+    }
+}
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * A function pointer that points to a function that accepts two int and return an array of 5 int</span>
+<span style="color: #888888">*/</span>
+<span style="color: #333399; font-weight: bold">int</span> (<span style="color: #333333">*</span>(<span style="color: #333333">*</span>fn_arr)(<span style="color: #333399; font-weight: bold">int</span>,<span style="color: #333399; font-weight: bold">int</span>))[<span style="color: #0000DD; font-weight: bold">5</span>];
+
+<span style="color: #008800; font-weight: bold">typedef</span> <span style="color: #333399; font-weight: bold">int</span> vector5[<span style="color: #0000DD; font-weight: bold">5</span>];
+
+
+vector5 vec5<span style="color: #333333">=</span>{<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5</span>};
+
+
+vector5<span style="color: #333333">*</span> <span style="color: #0066BB; font-weight: bold">test_function</span>(<span style="color: #333399; font-weight: bold">int</span> a,<span style="color: #333399; font-weight: bold">int</span> b)
+{
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333333">&amp;</span>vec5;
+}
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>()
+{
+
+   
+    <span style="color: #333399; font-weight: bold">int</span> (<span style="color: #333333">*</span>fun_ptr)(<span style="color: #333399; font-weight: bold">int</span>)<span style="color: #333333">=</span>fn_square;
+
+    cout<span style="color: #333333">&lt;&lt;</span>fun_ptr(<span style="color: #0000DD; font-weight: bold">2</span>)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints 4</span>
+    
+    fun_ptr<span style="color: #333333">=</span>fn_cube;
+
+    cout<span style="color: #333333">&lt;&lt;</span>fun_ptr(<span style="color: #0000DD; font-weight: bold">2</span>)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints 8</span>
+
+    
+    <span style="color: #333399; font-weight: bold">void</span> (<span style="color: #333333">*</span>fun_ptr2)(<span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">*</span>)<span style="color: #333333">=</span>display;
+
+    fun_ptr2(<span style="background-color: #fff0f0">&quot;Hello World!&quot;</span>);
+
+    use_function(fun_ptr,<span style="color: #0000DD; font-weight: bold">5</span>);
+
+   
+    use_function(fn_square,<span style="color: #0000DD; font-weight: bold">6</span>);
+
+    <span style="color: #888888">//populate the array of function pointers</span>
+    fun_ptr_array[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">=</span>fn_square;
+    fun_ptr_array[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">=</span>fn_cube;
+
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;*** user function pointer array*&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;i<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">2</span>;i<span style="color: #333333">++</span>) use_function(fun_ptr_array[i],<span style="color: #0000DD; font-weight: bold">6</span>);
+  
+
+    INT_FUNCTION fn1<span style="color: #333333">=</span>fn_square;
+
+    use_function(fn1,<span style="color: #0000DD; font-weight: bold">18</span>);
+
+    fn1<span style="color: #333333">=</span>choose_function(<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #888888">//returns fn_square</span>
+
+    use_function(fn1,<span style="color: #0000DD; font-weight: bold">3</span>);
+
+    fn1<span style="color: #333333">=</span>choose_function(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #888888">//returns fn_cube</span>
+
+    use_function(fn1,<span style="color: #0000DD; font-weight: bold">3</span>);
+
+    fn_arr<span style="color: #333333">=</span>test_function;
+
+    vector5<span style="color: #333333">*</span> res<span style="color: #333333">=</span>fn_arr(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>);
+
+    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;i<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">5</span>;i<span style="color: #333333">++</span>)
+    {
+        cout<span style="color: #333333">&lt;&lt;</span>(<span style="color: #333333">*</span>res)[i]<span style="color: #333333">&lt;&lt;</span>endl;
+    }
+
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+
+}
+</pre></div>
+
+    </body>
+</html>
