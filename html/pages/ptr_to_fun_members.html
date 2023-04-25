@@ -1,0 +1,91 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
+<span style="color: #888888"> * Pointers to function members</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Car</span>
+{
+<span style="color: #997700; font-weight: bold">private:</span>    
+   
+    <span style="color: #333399; font-weight: bold">int</span> gear;
+    <span style="color: #008800; font-weight: bold">const</span> string name;
+    
+<span style="color: #997700; font-weight: bold">public:</span>
+    
+     <span style="color: #333399; font-weight: bold">int</span> engine;
+    
+    Car(<span style="color: #008800; font-weight: bold">const</span> string <span style="color: #333333">&amp;</span>name)<span style="color: #333333">:</span>gear(<span style="color: #0000DD; font-weight: bold">0</span>),name(name),engine(<span style="color: #0000DD; font-weight: bold">5000</span>)
+    {
+        
+    }
+    
+    <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">bool</span> is_valid(<span style="color: #333399; font-weight: bold">int</span> gear)
+    {
+        <span style="color: #008800; font-weight: bold">return</span> gear<span style="color: #333333">&gt;=</span><span style="color: #0000DD; font-weight: bold">0</span> <span style="color: #333333">&amp;&amp;</span> gear<span style="color: #333333">&lt;=</span><span style="color: #0000DD; font-weight: bold">5</span>;
+    }
+    
+    <span style="color: #333399; font-weight: bold">int</span> shift_gear(<span style="color: #333399; font-weight: bold">int</span> new_gear)
+    {
+        <span style="color: #008800; font-weight: bold">if</span> (new_gear<span style="color: #333333">!=</span>gear <span style="color: #333333">&amp;&amp;</span> Car<span style="color: #333333">::</span>is_valid(new_gear))
+        {
+            gear<span style="color: #333333">=</span>new_gear;            
+            cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;shifted to &quot;</span><span style="color: #333333">&lt;&lt;</span>gear<span style="color: #333333">&lt;&lt;</span>endl;
+        }
+        <span style="color: #008800; font-weight: bold">else</span>
+        {
+            cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Same gear&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;            
+        }
+        <span style="color: #008800; font-weight: bold">return</span> gear;
+    }    
+    
+    <span style="color: #333399; font-weight: bold">int</span> get_gear() <span style="color: #008800; font-weight: bold">const</span>
+    {
+        <span style="color: #008800; font-weight: bold">return</span> gear;
+    }
+    
+    <span style="color: #008800; font-weight: bold">const</span> string get_name() <span style="color: #008800; font-weight: bold">const</span>
+    {
+        <span style="color: #008800; font-weight: bold">return</span> name;
+    }        
+    
+};
+
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+
+    Car car(<span style="background-color: #fff0f0">&quot;Porsche 911&quot;</span>);
+    
+    cout<span style="color: #333333">&lt;&lt;</span>car.get_name()<span style="color: #333333">&lt;&lt;</span>endl;
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;gear=&quot;</span><span style="color: #333333">&lt;&lt;</span>car.get_gear()<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #888888">// declare a pointer to member function</span>
+    <span style="color: #333399; font-weight: bold">int</span> (Car<span style="color: #333333">::*</span>shiftFn)(<span style="color: #333399; font-weight: bold">int</span>)<span style="color: #333333">=&amp;</span>Car<span style="color: #333333">::</span>shift_gear;
+    
+    <span style="color: #888888">//call member function on a object instance    </span>
+    (car.<span style="color: #333333">*</span>shiftFn)(<span style="color: #0000DD; font-weight: bold">1</span>);   
+    
+    <span style="color: #888888">//delcare a pointer to data member</span>
+    <span style="color: #333399; font-weight: bold">int</span> Car<span style="color: #333333">::*</span>ptrEngine<span style="color: #333333">=&amp;</span>Car<span style="color: #333333">::</span>engine;
+    
+    <span style="color: #888888">//change the value on the instance</span>
+    car.<span style="color: #333333">*</span>ptrEngine<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">6000</span>;   
+          
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;gear=&quot;</span><span style="color: #333333">&lt;&lt;</span>car.get_gear()<span style="color: #333333">&lt;&lt;</span>endl;   
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;engine=&quot;</span><span style="color: #333333">&lt;&lt;</span>car.engine<span style="color: #333333">&lt;&lt;</span>endl;  
+    
+    <span style="color: #888888">//pointer to static member function (is a normal fn pointer)</span>
+    
+    <span style="color: #333399; font-weight: bold">bool</span> (<span style="color: #333333">*</span>fnIsValid)(<span style="color: #333399; font-weight: bold">int</span>)<span style="color: #333333">=</span>Car<span style="color: #333333">::</span>is_valid;
+    
+    cout<span style="color: #333333">&lt;&lt;</span>fnIsValid(<span style="color: #0000DD; font-weight: bold">11</span>)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//false</span>
+    cout<span style="color: #333333">&lt;&lt;</span>fnIsValid(<span style="color: #0000DD; font-weight: bold">1</span>)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//true</span>
+    
+    
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+
