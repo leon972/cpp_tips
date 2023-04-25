@@ -1,0 +1,78 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
+<span style="color: #888888"> * Comparison operators </span>
+<span style="color: #888888"> * </span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #888888">/* </span>
+<span style="color: #888888"> * File:   main.cpp</span>
+<span style="color: #888888"> * Author: leonardo</span>
+<span style="color: #888888"> *</span>
+<span style="color: #888888"> * Created on 25 aprile 2023, 19:56</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+
+
+<span style="color: #888888">/*</span>
+<span style="color: #888888"> * </span>
+<span style="color: #888888"> */</span>
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>a<span style="color: #333333">=</span>nullptr;
+    
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;&lt;a==nullptr &quot;</span><span style="color: #333333">&lt;&lt;</span>(a<span style="color: #333333">==</span>nullptr)<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl;
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> c[<span style="color: #0000DD; font-weight: bold">4</span>]<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;abc&quot;</span>;
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">*</span> p1<span style="color: #333333">=&amp;</span>c[<span style="color: #0000DD; font-weight: bold">0</span>];
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">*</span> p2<span style="color: #333333">=&amp;</span>c[<span style="color: #0000DD; font-weight: bold">1</span>];
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> <span style="color: #333333">*</span>p3<span style="color: #333333">=&amp;</span>c[<span style="color: #0000DD; font-weight: bold">1</span>];
+    
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;&amp;c=&quot;</span><span style="color: #333333">&lt;&lt;&amp;</span>c<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl;
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;p1=&quot;</span><span style="color: #333333">&lt;&lt;</span>p1<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl; <span style="color: #888888">//abc </span>
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;p2=&quot;</span><span style="color: #333333">&lt;&lt;</span>p2<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl; <span style="color: #888888">//bc</span>
+    
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;p1==p2 &quot;</span><span style="color: #333333">&lt;&lt;</span>(p1<span style="color: #333333">==</span>p2)<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl; <span style="color: #888888">//false (0)</span>
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;p2==p3 &quot;</span><span style="color: #333333">&lt;&lt;</span>(p2<span style="color: #333333">==</span>p3)<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl; <span style="color: #888888">//true (1)</span>
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;p1&lt;p2 &quot;</span><span style="color: #333333">&lt;&lt;</span>(p1<span style="color: #333333">&lt;</span>p2)<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl; <span style="color: #888888">//true (1)</span>
+    
+    <span style="color: #333399; font-weight: bold">int</span> ch<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">65</span>;
+    <span style="color: #333399; font-weight: bold">char</span> ch1<span style="color: #333333">=</span>ch;
+    
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;ch==ch1 &quot;</span><span style="color: #333333">&lt;&lt;</span>(ch<span style="color: #333333">==</span>ch1)<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl; <span style="color: #888888">//true (1)</span>
+    
+    <span style="color: #888888">//C++20 three way comparison</span>
+    
+    <span style="color: #333399; font-weight: bold">int</span> z1<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">9</span>;
+    <span style="color: #333399; font-weight: bold">int</span> z2<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">12</span>;
+    
+    <span style="color: #008800; font-weight: bold">auto</span> cmp<span style="color: #333333">=</span>z1<span style="color: #333333">&lt;=&gt;</span>z2; <span style="color: #888888">//cmp is of type std::strong_ordering , return an object that is &lt;0 if z1&lt;0, 0 if z1==z2 and &gt;0 if z1&gt;z2</span>
+    std<span style="color: #333333">::</span>strong_ordering cmp2<span style="color: #333333">=</span>z1<span style="color: #333333">&lt;=&gt;</span>z2;    
+    
+    std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;z1&lt;=&gt;z2 &quot;</span><span style="color: #333333">&lt;&lt;</span>(cmp<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">0</span>)<span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl; <span style="color: #888888">//true</span>
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">float</span> f1<span style="color: #333333">=</span><span style="color: #6600EE; font-weight: bold">0.002f</span>;
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">float</span> f2<span style="color: #333333">=</span><span style="color: #6600EE; font-weight: bold">0.1f</span>;
+    
+    <span style="color: #008800; font-weight: bold">auto</span> cmpf<span style="color: #333333">=</span>f1<span style="color: #333333">&lt;=&gt;</span>f2;
+    std<span style="color: #333333">::</span>partial_ordering cmpf1<span style="color: #333333">=</span>f1<span style="color: #333333">&lt;=&gt;</span>f2;
+    
+    <span style="color: #008800; font-weight: bold">if</span> (cmpf1<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">0</span>)
+    {
+        <span style="color: #888888">//this will be printed</span>
+        std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;f1&lt;f2&quot;</span><span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl;
+    }
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> <span style="color: #333333">*</span>ptr<span style="color: #333333">=</span>nullptr;
+    
+    <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #333333">!</span>ptr)
+    {
+        std<span style="color: #333333">::</span>cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;nullptr ok&quot;</span><span style="color: #333333">&lt;&lt;</span>std<span style="color: #333333">::</span>endl;
+    }
+    
+    
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+

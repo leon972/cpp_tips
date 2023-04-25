@@ -1,0 +1,119 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
+<span style="color: #888888"> * C-style arrays and pointers</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #888888">/* </span>
+<span style="color: #888888"> * File:   main.cpp</span>
+<span style="color: #888888"> * Author: leonardo</span>
+<span style="color: #888888"> *</span>
+<span style="color: #888888"> * Created on 25 aprile 2023, 20:21</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #557799">#include &lt;string&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * Passing an array pointer as function argument</span>
+<span style="color: #888888"> * @param ptr</span>
+<span style="color: #888888"> * @param array_len</span>
+<span style="color: #888888"> * @param info</span>
+<span style="color: #888888"> */</span>
+<span style="color: #008800; font-weight: bold">template</span><span style="color: #333333">&lt;</span><span style="color: #008800; font-weight: bold">typename</span> T<span style="color: #333333">&gt;</span>
+<span style="color: #333399; font-weight: bold">void</span> printArrayInfo(T <span style="color: #333333">*</span>ptr,<span style="color: #333399; font-weight: bold">size_t</span> array_len,<span style="color: #008800; font-weight: bold">const</span> string <span style="color: #333333">&amp;</span>info)
+{
+    cout<span style="color: #333333">&lt;&lt;</span>info<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot; length=&quot;</span><span style="color: #333333">&lt;&lt;</span>array_len<span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">size_t</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;i<span style="color: #333333">&lt;</span>array_len;<span style="color: #333333">++</span>i)
+    {
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;array[&quot;</span><span style="color: #333333">&lt;&lt;</span>i<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;]=&quot;</span><span style="color: #333333">&lt;&lt;*</span>ptr<span style="color: #333333">&lt;&lt;</span>endl;
+        <span style="color: #333333">++</span>ptr;
+    }    
+}
+
+<span style="color: #008800; font-weight: bold">struct</span> MyData
+{
+    <span style="color: #008800; font-weight: bold">const</span> string data;
+    
+    MyData(<span style="color: #008800; font-weight: bold">const</span> string<span style="color: #333333">&amp;</span> data)<span style="color: #333333">:</span>data(data)
+    {
+        
+    }
+    
+    <span style="color: #008800; font-weight: bold">friend</span> std<span style="color: #333333">::</span>ostream<span style="color: #333333">&amp;</span> <span style="color: #008800; font-weight: bold">operator</span> <span style="color: #333333">&lt;&lt;</span> (std<span style="color: #333333">::</span>ostream <span style="color: #333333">&amp;</span>os,<span style="color: #008800; font-weight: bold">const</span> MyData <span style="color: #333333">&amp;</span>my_data);    
+    
+};
+
+std<span style="color: #333333">::</span>ostream<span style="color: #333333">&amp;</span> <span style="color: #008800; font-weight: bold">operator</span> <span style="color: #333333">&lt;&lt;</span> (std<span style="color: #333333">::</span>ostream <span style="color: #333333">&amp;</span>os,<span style="color: #008800; font-weight: bold">const</span> MyData <span style="color: #333333">&amp;</span>my_data)
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;MyData &quot;</span><span style="color: #333333">&lt;&lt;</span>my_data.data<span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #008800; font-weight: bold">return</span> os;
+}
+
+<span style="color: #888888">//passing array with exact size</span>
+<span style="color: #333399; font-weight: bold">void</span> testArraySize(<span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>a[<span style="color: #0000DD; font-weight: bold">5</span>])
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;test array size &quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(<span style="color: #333333">*</span>a)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//8 on 64 bit machine</span>
+    
+    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;i<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">5</span>;<span style="color: #333333">++</span>i)
+    {
+        cout<span style="color: #333333">&lt;&lt;*</span>a[i]<span style="color: #333333">&lt;&lt;</span>endl;
+    }    
+}
+
+<span style="color: #888888">//array is not copied but passed by reference</span>
+<span style="color: #333399; font-weight: bold">void</span> testArray2(<span style="color: #333399; font-weight: bold">char</span> c[<span style="color: #0000DD; font-weight: bold">4</span>])
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;test array 2&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;i<span style="color: #333333">&lt;</span><span style="color: #0000DD; font-weight: bold">4</span>;<span style="color: #333333">++</span>i)
+    {
+        c[i]<span style="color: #333333">=</span><span style="color: #0044DD">&#39;X&#39;</span>;
+    }
+    printArrayInfo(c,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="background-color: #fff0f0">&quot;After changed in function&quot;</span>);    
+}
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * </span>
+<span style="color: #888888"> */</span>
+<span style="color: #333399; font-weight: bold">int</span> main(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> <span style="color: #333333">*</span>text<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;This is a text&quot;</span>;
+    
+    printArrayInfo(text,<span style="color: #0000DD; font-weight: bold">14</span>,<span style="background-color: #fff0f0">&quot;ptr to array&quot;</span>);
+    
+    <span style="color: #888888">//sizeof d is sizeof MyData*3    </span>
+    <span style="color: #008800; font-weight: bold">const</span> MyData d[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">=</span>{MyData(<span style="background-color: #fff0f0">&quot;test1&quot;</span>),MyData(<span style="background-color: #fff0f0">&quot;test2&quot;</span>),MyData(<span style="background-color: #fff0f0">&quot;test3&quot;</span>)};
+    
+    <span style="color: #888888">//d is consedered a pointer to the beginning of array</span>
+    printArrayInfo(d,<span style="color: #008800; font-weight: bold">sizeof</span>(d)<span style="color: #333333">/</span><span style="color: #008800; font-weight: bold">sizeof</span>(MyData),<span style="background-color: #fff0f0">&quot;my data array&quot;</span>);   
+    
+    <span style="color: #008800; font-weight: bold">const</span> MyData <span style="color: #333333">*</span>d1<span style="color: #333333">=</span>d<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span>;
+    
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Pointer from the second element...&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;sizeof(MyData)=&quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(MyData)<span style="color: #333333">&lt;&lt;</span>endl;
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;sizeof(d)=&quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(d)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//96=32*3 elements</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;d=&quot;</span><span style="color: #333333">&lt;&lt;</span>d<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//d memory addr</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;d1=&quot;</span><span style="color: #333333">&lt;&lt;</span>d1<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//d1 memory addr</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Diff=&quot;</span><span style="color: #333333">&lt;&lt;</span>(d1<span style="color: #333333">-</span>d)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//1</span>
+    <span style="color: #008800; font-weight: bold">auto</span> newSize<span style="color: #333333">=</span>(<span style="color: #008800; font-weight: bold">sizeof</span>(d)<span style="color: #333333">/</span><span style="color: #008800; font-weight: bold">sizeof</span>(MyData)<span style="color: #333333">-</span>(d1<span style="color: #333333">-</span>d));
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;New size=&quot;</span><span style="color: #333333">&lt;&lt;</span>newSize<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//2</span>
+    
+    printArrayInfo(d1,newSize,<span style="background-color: #fff0f0">&quot;stating from second element&quot;</span>);
+    
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;-------------&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #333399; font-weight: bold">int</span> myints[]<span style="color: #333333">=</span>{<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5</span>};
+    <span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>v[<span style="color: #0000DD; font-weight: bold">5</span>]<span style="color: #333333">=</span>{<span style="color: #333333">&amp;</span>myints[<span style="color: #0000DD; font-weight: bold">0</span>],<span style="color: #333333">&amp;</span>myints[<span style="color: #0000DD; font-weight: bold">1</span>],<span style="color: #333333">&amp;</span>myints[<span style="color: #0000DD; font-weight: bold">2</span>],<span style="color: #333333">&amp;</span>myints[<span style="color: #0000DD; font-weight: bold">3</span>],<span style="color: #333333">&amp;</span>myints[<span style="color: #0000DD; font-weight: bold">4</span>]};
+    
+    testArraySize(v);
+    
+    <span style="color: #333399; font-weight: bold">char</span> mychars[<span style="color: #0000DD; font-weight: bold">5</span>]<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;ABCD&quot;</span>;
+    
+    testArray2(mychars);
+    
+    printArrayInfo(mychars,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="background-color: #fff0f0">&quot;after function call&quot;</span>);
+        
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
