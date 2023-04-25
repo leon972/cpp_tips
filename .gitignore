@@ -41,3 +41,9 @@ dist/
 nbdist/
 .nb-gradle/
 
+#Exclude this folders
+TestBed
+HelloWorld
+**/build
+**/dist
+notes.txt

@@ -36,7 +36,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
-          <commandLine>-std=c++2a</commandLine>
+          <commandLine>--std=c++2a</commandLine>
         </ccTool>
       </compileType>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -54,8 +54,7 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
-          <standard>11</standard>
-          <commandLine>-std=c++2a</commandLine>
+          <commandLine>--std=c++2a</commandLine>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>

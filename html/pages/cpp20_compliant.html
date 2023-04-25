@@ -1,0 +1,78 @@
+<html>
+    <head><title>Checks if the compiler supports C++20</title></head>
+    <body>
+        <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/**</span>
+<span style="color: #888888"> * C++20 test</span>
+<span style="color: #888888"> * Use some C++20 features to check the compiler compatibility</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #557799">#include &lt;string&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #557799">#define PRINT_FEATURE(feature) cout&lt;&lt;#feature&lt;&lt;&quot; supported : &quot;&lt;&lt;feature&lt;&lt;endl;</span>
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">print_compiler_std</span>()
+{
+<span style="color: #557799">#ifndef __cplusplus</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;No C++ supported&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+<span style="color: #557799">#else</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;C++ standard: &quot;</span><span style="color: #333333">&lt;&lt;</span>__cplusplus<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #008800; font-weight: bold">if</span> (__cplusplus<span style="color: #333333">&gt;=</span><span style="color: #0000DD; font-weight: bold">202002L</span>)
+    {
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;C++20 is supported!&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    }
+    <span style="color: #008800; font-weight: bold">else</span>
+    {
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;C++20 NOT SUPPORTED&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    }
+           
+    
+<span style="color: #557799">#endif</span>
+}
+
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+
+    print_compiler_std();
+            
+    
+<span style="color: #557799">#ifdef __cpp_concepts</span>
+    PRINT_FEATURE(__cpp_concepts);
+<span style="color: #557799">#else</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Concepts not supported&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+<span style="color: #557799">#endif   </span>
+
+<span style="color: #557799">#ifdef __cpp_conditional_explicit</span>
+    PRINT_FEATURE(__cpp_conditional_explicit);
+<span style="color: #557799">#else</span>
+     cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Conditional explicit not supported&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+<span style="color: #557799">#endif</span>
+
+<span style="color: #557799">#ifdef __cpp_consteval</span>
+    PRINT_FEATURE(__cpp_consteval);
+<span style="color: #557799">#else</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Const eval not supported&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+<span style="color: #557799">#endif</span>
+    
+<span style="color: #557799">#ifdef __cpp_constexpr</span>
+    PRINT_FEATURE(__cpp_constexpr)
+<span style="color: #557799">#else</span>
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;constexpr not supported&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+<span style="color: #557799">#endif</span>
+    
+<span style="color: #557799">#ifdef __cpp_size_t_suffix</span>
+    PRINT_FEATURE(__cpp_size_t_suffix);
+<span style="color: #557799">#else</span>
+     cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;__cpp_size_t_suffix not supported&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+<span style="color: #557799">#endif</span>
+
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+
+    </body>
+</html>
