@@ -1,0 +1,29 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
+<span style="color: #888888"> * __LINE__, __FILE__ and __func__ (since c++ 11) standard macros</span>
+<span style="color: #888888"> */</span>
+ 
+
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+
+<span style="color: #557799">#define LOG(message) cout&lt;&lt;message&lt;&lt;&quot; file &quot;&lt;&lt;__FILE__&lt;&lt;&quot; function &quot;&lt;&lt;__func__&lt;&lt;&quot; line &quot;&lt;&lt;__LINE__&lt;&lt;endl;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">my_function</span>()
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Hello!&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    LOG(<span style="background-color: #fff0f0">&quot;called function&quot;</span>);
+}
+
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+
+    LOG(<span style="background-color: #fff0f0">&quot;start program&quot;</span>);
+    
+    my_function();
+    
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+
