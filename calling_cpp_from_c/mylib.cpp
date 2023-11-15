@@ -9,7 +9,7 @@
 using std::cout;
 using std::endl;
 
-void MyClass::process(int a, int b) {
+void MyClass::process(int a, int b)  {
     cout << "Process " << a << ' ' << b <<'='<< a + b << endl;
 }
 

@@ -20,8 +20,8 @@ public:
 
 class MyClass:public ILib
 {
-public:
-    virtual void process(int a,int b);    
+public:    
+    virtual void process(int a,int b) override;    
     virtual ~MyClass();
 };
 
