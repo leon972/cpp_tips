@@ -1,0 +1,179 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">print <span style="color: #FF0000; background-color: #FFAAAA">&#39;</span>hello world<span style="color: #333333">!</span><span style="color: #FF0000; background-color: #FFAAAA">&#39;</span><span style="color: #888888">/**</span>
+    <span style="color: #888888"> * Initialization types</span>
+    <span style="color: #888888"> */</span>
+    
+    <span style="color: #557799">#include &lt;cstdlib&gt;</span>
+    <span style="color: #557799">#include &lt;iostream&gt;</span>
+    <span style="color: #557799">#include &lt;string&gt;</span>
+    <span style="color: #557799">#include &lt;typeinfo&gt;</span>
+    <span style="color: #557799">#include &lt;vector&gt;</span>
+    <span style="color: #557799">#include &lt;numeric&gt;</span>
+    
+    
+    <span style="color: #008800; font-weight: bold">using</span> std<span style="color: #333333">::</span>cout;
+    <span style="color: #008800; font-weight: bold">using</span> std<span style="color: #333333">::</span>endl;
+    
+    
+    <span style="color: #008800; font-weight: bold">struct</span> Sim
+    {
+        <span style="color: #333399; font-weight: bold">int</span> value;
+    };
+    
+    <span style="color: #008800; font-weight: bold">struct</span> Foo
+    {
+        std<span style="color: #333333">::</span>string data;    
+        <span style="color: #888888">//User-provided default constructor</span>
+        Foo()<span style="color: #333333">:</span>Foo(<span style="background-color: #fff0f0">&quot;I am Foo&quot;</span>) <span style="color: #888888">//&lt;!-- c++11 constructions delegations</span>
+        {
+            
+           <span style="color: #888888">// Foo(&quot;I am Foo&quot;); &lt;! -- ERROR this create an object foo it doesn&#39;t call the constructor</span>
+        }
+        
+        Foo(<span style="color: #008800; font-weight: bold">const</span> std<span style="color: #333333">::</span>string <span style="color: #333333">&amp;</span>name)
+        {
+            data<span style="color: #333333">=</span>name;
+            cout<span style="color: #333333">&lt;&lt;</span>data<span style="color: #333333">&lt;&lt;</span>endl;
+        }     
+        
+        <span style="color: #008800; font-weight: bold">const</span> std<span style="color: #333333">::</span>string str() <span style="color: #008800; font-weight: bold">const</span>
+        {
+            <span style="color: #008800; font-weight: bold">return</span> std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;[Foo]:&quot;</span>)<span style="color: #333333">+</span>std<span style="color: #333333">::</span>string(data);
+        }
+        
+    };
+    
+    <span style="color: #008800; font-weight: bold">struct</span> Bar<span style="color: #333333">:</span><span style="color: #008800; font-weight: bold">public</span> Foo
+    {
+        <span style="color: #333399; font-weight: bold">int</span> value;
+        
+            
+        <span style="color: #008800; font-weight: bold">explicit</span> <span style="color: #0066BB; font-weight: bold">Bar</span>(<span style="color: #333399; font-weight: bold">int</span> value)<span style="color: #333333">:</span>Foo(<span style="background-color: #fff0f0">&quot;I am Bar&quot;</span>),value(value) <span style="color: #888888">//&lt;!-- constructor delegation</span>
+        {
+            
+        }
+        
+        <span style="color: #008800; font-weight: bold">explicit</span> <span style="color: #0066BB; font-weight: bold">Bar</span>()<span style="color: #333333">:</span>Foo(<span style="background-color: #fff0f0">&quot;Im am explicit Bar&quot;</span>),value(<span style="color: #0000DD; font-weight: bold">0</span>)
+        {
+            
+        }
+        
+        Bar(<span style="color: #333399; font-weight: bold">int</span> value,<span style="color: #008800; font-weight: bold">const</span> std<span style="color: #333333">::</span>string <span style="color: #333333">&amp;</span>data)<span style="color: #333333">:</span>Foo(data),value(value)
+        {
+            
+        }
+        
+        <span style="color: #333399; font-weight: bold">void</span> display() <span style="color: #008800; font-weight: bold">const</span>
+        {
+            cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Bar &quot;</span><span style="color: #333333">&lt;&lt;</span>data<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot; value=&quot;</span><span style="color: #333333">&lt;&lt;</span>value;
+        }    
+        
+    };
+    
+    <span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">sum_items</span>(<span style="color: #008800; font-weight: bold">const</span> std<span style="color: #333333">::</span>vector<span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">int</span><span style="color: #333333">&gt;</span> <span style="color: #333333">&amp;</span>v)
+    {
+        <span style="color: #008800; font-weight: bold">return</span> std<span style="color: #333333">::</span>accumulate(v.begin(),v.end(),<span style="color: #0000DD; font-weight: bold">0</span>,[](<span style="color: #008800; font-weight: bold">auto</span> prev,<span style="color: #008800; font-weight: bold">auto</span> v) {<span style="color: #008800; font-weight: bold">return</span> prev<span style="color: #333333">+</span>v;});
+    }
+    
+    <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">process_bar</span>(<span style="color: #008800; font-weight: bold">const</span> Bar <span style="color: #333333">&amp;</span>bar)
+    {
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;processing bar &quot;</span><span style="color: #333333">&lt;&lt;</span>bar.data<span style="color: #333333">&lt;&lt;</span>endl;
+    }
+    
+    
+    <span style="color: #333399; font-weight: bold">int</span> g_myint; <span style="color: #888888">//initialized to default value (zero)</span>
+    
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888"> * </span>
+    <span style="color: #888888"> */</span>
+    <span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+            
+        <span style="color: #888888">//---------------------- default initialization ------</span>
+        
+        <span style="color: #333399; font-weight: bold">int</span> a; <span style="color: #888888">//undeterminate (avoid!)    </span>
+        std<span style="color: #333333">::</span>string cc; <span style="color: #888888">//default string initialization to &quot;&quot;</span>
+        <span style="color: #333399; font-weight: bold">float</span> <span style="color: #333333">*</span>pf; <span style="color: #888888">//undeterminate</span>
+        Sim sim; <span style="color: #888888">//calls the implicit default constructor</span>
+        <span style="color: #888888">//const Sim sim2; error:no user provided ctor       </span>
+        Foo foo; <span style="color: #888888">//call the user-provided default constructor</span>
+        <span style="color: #008800; font-weight: bold">const</span> Foo foo2; <span style="color: #888888">//call the user-provided default constructor   </span>
+        Bar bar; <span style="color: #888888">//ok call Bar()</span>
+        
+        
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;a=&quot;</span><span style="color: #333333">&lt;&lt;</span>a<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//undefined behaviour</span>
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;cc=&quot;</span><span style="color: #333333">&lt;&lt;</span>cc<span style="color: #333333">&lt;&lt;</span>endl;
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;pf=&quot;</span><span style="color: #333333">&lt;&lt;</span>pf<span style="color: #333333">&lt;&lt;</span>endl;<span style="color: #888888">//undefined  behaviour</span>
+       <span style="color: #888888">// cout&lt;&lt;&quot;*pf=&quot;&lt;&lt;*pf&lt;&lt;endl; //undefined  behaviour</span>
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;sim.value=&quot;</span><span style="color: #333333">&lt;&lt;</span>sim.value<span style="color: #333333">&lt;&lt;</span>endl;
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;foo.data=&quot;</span><span style="color: #333333">&lt;&lt;</span>foo.data<span style="color: #333333">&lt;&lt;</span>endl;
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;foo2.data=&quot;</span><span style="color: #333333">&lt;&lt;</span>foo2.data<span style="color: #333333">&lt;&lt;</span>endl;   
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;bar=&quot;</span>;bar.display();cout<span style="color: #333333">&lt;&lt;</span>endl;
+        
+        
+        <span style="color: #888888">//-------------------- copy initialization -----------</span>
+        
+        <span style="color: #008800; font-weight: bold">const</span> Foo foo3<span style="color: #333333">=</span>std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;Foo 3 data&quot;</span>); <span style="color: #888888">//ok copy initialization </span>
+        <span style="color: #888888">//Bar bar2=22; error bercause the ctor Bar(int value) is explicit!</span>
+        
+        <span style="color: #333399; font-weight: bold">long</span> l1;
+        <span style="color: #333399; font-weight: bold">long</span> l2<span style="color: #333333">=</span>l1; <span style="color: #888888">//undefined behaviour</span>
+        <span style="color: #333399; font-weight: bold">int</span> ax<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">10</span>; 
+        <span style="color: #008800; font-weight: bold">const</span> Foo foo4<span style="color: #333333">=</span>foo3;      
+        
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;foo3=&quot;</span><span style="color: #333333">&lt;&lt;</span>foo3.data<span style="color: #333333">&lt;&lt;</span>endl;
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;l2=&quot;</span><span style="color: #333333">&lt;&lt;</span>l2<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//undefined behaviour</span>
+        <span style="color: #333399; font-weight: bold">int</span> e1,e2<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">5</span>;
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;e1=&quot;</span><span style="color: #333333">&lt;&lt;</span>e1<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//undefined behaviour</span>
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;e2=&quot;</span><span style="color: #333333">&lt;&lt;</span>e2<span style="color: #333333">&lt;&lt;</span>endl;
+        Bar baz<span style="color: #333333">=</span>{<span style="color: #0000DD; font-weight: bold">22</span>,std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;fff&quot;</span>)}; <span style="color: #888888">//ok user defined ctror</span>
+        <span style="color: #888888">//Bar baz1={55}; //errror! this ctor is declared explicit! cannot copy initialize</span>
+        
+        <span style="color: #888888">//------------------ direct initialization -------------</span>
+        Bar baz3(<span style="color: #0000DD; font-weight: bold">22</span>);
+        Bar baz4{<span style="color: #0000DD; font-weight: bold">22</span>};
+        
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;baz3.value=&quot;</span><span style="color: #333333">&lt;&lt;</span>baz3.value<span style="color: #333333">&lt;&lt;</span>endl;        
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;baz4.value=&quot;</span><span style="color: #333333">&lt;&lt;</span>baz4.value<span style="color: #333333">&lt;&lt;</span>endl;      
+        
+        <span style="color: #333399; font-weight: bold">float</span> ft1(<span style="color: #6600EE; font-weight: bold">8.1f</span>);
+        cout<span style="color: #333333">&lt;&lt;</span>ft1<span style="color: #333333">&lt;&lt;</span>endl;
+        <span style="color: #333399; font-weight: bold">int16_t</span> reg1{<span style="color: #005588; font-weight: bold">0x01FA</span>};
+        cout<span style="color: #333333">&lt;&lt;</span>reg1<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//506</span>
+        
+        <span style="color: #888888">//-------------------- char array initialization ------------</span>
+        <span style="color: #333399; font-weight: bold">char</span> arr1[]<span style="color: #333333">=</span>{<span style="color: #0044DD">&#39;a&#39;</span>,<span style="color: #0044DD">&#39;b&#39;</span>,<span style="color: #0044DD">&#39;c&#39;</span>};
+        cout<span style="color: #333333">&lt;&lt;</span>arr1[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//prints c</span>
+        cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(arr1)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//3</span>
+        <span style="color: #333399; font-weight: bold">char</span> arr2[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">=</span>{<span style="color: #0044DD">&#39;X&#39;</span>,<span style="color: #0044DD">&#39;Y&#39;</span>,<span style="color: #0044DD">&#39;Z&#39;</span>}; <span style="color: #888888">//aggregate initialization</span>
+        cout<span style="color: #333333">&lt;&lt;</span>arr2<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//XYZ</span>
+        <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> <span style="color: #333333">*</span>txt<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;This is a text&quot;</span>;
+        cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(txt)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//size of pointer (8 o 64 bit machines)</span>
+        cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(<span style="color: #333333">*</span>txt)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//sizeo of the first element of the array</span>
+        <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> <span style="color: #333333">*</span>txt2{<span style="background-color: #fff0f0">&quot;Text 2&quot;</span>};
+        cout<span style="color: #333333">&lt;&lt;</span>txt2<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//Text 2</span>
+        <span style="color: #333399; font-weight: bold">char</span> txt3[]{<span style="background-color: #fff0f0">&quot;Text 3&quot;</span>};
+        cout<span style="color: #333333">&lt;&lt;</span>txt3<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//text 3</span>
+        cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(txt3)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//7</span>
+        <span style="color: #008800; font-weight: bold">const</span> Foo foos[]<span style="color: #333333">=</span>{{<span style="background-color: #fff0f0">&quot;f1&quot;</span>},{<span style="background-color: #fff0f0">&quot;f2&quot;</span>},{<span style="background-color: #fff0f0">&quot;f3&quot;</span>}}; <span style="color: #888888">//aggregate and uniform initialization </span>
+        cout<span style="color: #333333">&lt;&lt;</span>foos[<span style="color: #0000DD; font-weight: bold">1</span>].str()<span style="color: #333333">&lt;&lt;</span>endl;
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;sizeof(foos)=&quot;</span><span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">sizeof</span>(foos)<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//96 sizeof (foo)*3</span>
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;foos len=&quot;</span><span style="color: #333333">&lt;&lt;</span>(<span style="color: #008800; font-weight: bold">sizeof</span>(foos)<span style="color: #333333">/</span><span style="color: #008800; font-weight: bold">sizeof</span>(Foo))<span style="color: #333333">&lt;&lt;</span>endl;
+        
+        <span style="color: #888888">//-------------- uniform initialization ----------------------------</span>
+        <span style="color: #008800; font-weight: bold">auto</span> f8{<span style="color: #0000DD; font-weight: bold">22</span>};
+        cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">typeid</span>(f8).name()<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//i=integer</span>
+        <span style="color: #008800; font-weight: bold">auto</span> f9{<span style="color: #6600EE; font-weight: bold">22.1</span>};
+        cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">typeid</span>(f9).name()<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//d=double</span>
+        <span style="color: #008800; font-weight: bold">auto</span> f10{<span style="color: #6600EE; font-weight: bold">99.0001f</span>};
+        cout<span style="color: #333333">&lt;&lt;</span><span style="color: #008800; font-weight: bold">typeid</span>(f10).name()<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//f=float</span>
+        std<span style="color: #333333">::</span>vector va{<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>}; <span style="color: #888888">//vector uniform initialization</span>
+        va.push_back(<span style="color: #0000DD; font-weight: bold">11</span>);
+        cout<span style="color: #333333">&lt;&lt;</span>sum_items({<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">10</span>})<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//25 </span>
+        process_bar({<span style="color: #0000DD; font-weight: bold">11</span>,<span style="background-color: #fff0f0">&quot;Bar to be processed&quot;</span>});           
+        
+        
+    
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+        
+    }
+    </pre></div>
+    

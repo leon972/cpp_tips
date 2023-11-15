@@ -17,6 +17,7 @@
 #include <string>
 #include <stack>
 #include <list>
+#include <format>
 
 
 using namespace std;
@@ -24,33 +25,16 @@ using namespace std;
 /*
  * 
  */
-void display(const list<int> &lst)
-{
-    for (auto it=lst.begin();it!=lst.end();++it)    
-    {
-        cout<<*it<<",";        
-    };
-    cout<<endl;
-}
+
  
 int main (int argc,char *argv[]) {
     
-    auto lst=list<int>{1,2,3,4,5};
     
-    display(lst);    
+    cout<<std::format("{1} to {0}", "a", "b");   
     
-    for (auto it=lst.begin();it!=lst.end();++it)
-    {
-        if (*it==3)
-        {            
-            lst.emplace(it,33);
-            lst.remove(it);
-            break;
-                      
-        }
-    }
-    
-    display(lst);  
+    const string str=std::format("{1} to {0}", "a", "b");
+    cout <<str+"xx";
+ 
     
     
 }

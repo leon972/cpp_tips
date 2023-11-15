@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>mylib.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,7 +13,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>fun_ptrs.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+      <itemPath>mylib.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -39,7 +41,11 @@
           <commandLine>-std=c++2a</commandLine>
         </ccTool>
       </compileType>
-      <item path="fun_ptrs.cpp" ex="false" tool="1" flavor2="0">
+      <item path="main.cpp" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="mylib.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="mylib.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -54,8 +60,7 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
-          <stripSymbols>true</stripSymbols>
-          <commandLine>-std=c++2a</commandLine>
+          <standard>11</standard>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -64,7 +69,11 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="fun_ptrs.cpp" ex="false" tool="1" flavor2="0">
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="mylib.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="mylib.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>C++ tips</title>	
+	<title>C++ tips</title>
 	<style>
 		body {
 			font-family: sans-serif;
 		}
-		h2 
-		{
+
+		h2 {
 			color: darkgreen;
 		}
+
 		a {
 			color: blue;
 			text-decoration: none;
 			margin-left: 1em;
 		}
-		.row
-		{
+
+		.row {
 			display: flex;
-			flex-direction: row;	
-			justify-content:  flex-start;		
+			flex-direction: row;
+			justify-content: flex-start;
 			align-items: center;
 		}
-		.indent
-		{
+
+		.indent {
 			padding-left: 2em;
 		}
-
-</style>
+	</style>
 </head>
+
 <body>
 	<h1>C++ tips and samples (std 11/14/17/20)</h1>
 	<h2>Check C++20 compliant compiler</h2>
-	<div class="row">A simple program to check if C++20 standard is supported<a href="pages/cpp20_compliant.html" target="_blank">&#x1F517;</a></div>
+	<div class="row">A simple program to check if C++20 standard is supported<a href="pages/cpp20_compliant.html"
+			target="_blank">&#x1F517;</a></div>
 	<h2>Data types</h2>
 	<div class="row">
 		<p>Primitive data types and new C++11 fixed width types</p>
@@ -48,23 +51,52 @@
 		<li>Concatenation macros ##</li>
 		<li>Gnu C macros</li>
 	</ul>
-	<h3>__FILE__,__LINE__,__func__ standard macros<a href="pages/std_macros.html" target="_blank">&#x1F517;</a></h2></h3>	
+	<h3>__FILE__,__LINE__,__func__ standard macros<a href="pages/std_macros.html" target="_blank">&#x1F517;</a></h2>
+	</h3>
 	<h2>Pointers</h2>
 	<div class="indent">
-		<h3>Function pointers <a href="pages/fun_pointers.html" target="_blank">&#x1F517;</a></h2></h3>		
-		<h3>C-style pointer to arrays<a href="pages/array_ptrs.html" target="_blank">&#x1F517;</a></h2></h3>	
+		<h3>Function pointers <a href="pages/fun_pointers.html" target="_blank">&#x1F517;</a></h2>
+		</h3>
+		<h3>C-style pointer to arrays<a href="pages/array_ptrs.html" target="_blank">&#x1F517;</a></h2>
+		</h3>
 		<ul>
-		<li>Passing pointer to C-style arrays to functions</li>
-		<li>Overloading of << operator with custom class</li>
-		<li>Pointers arithmetic</li>
-		</ul>	
-		<h3>Pointers to class functions members<a href="pages/ptr_to_fun_members.html" target="_blank">&#x1F517;</a></h2></h3>	
+			<li>Passing pointer to C-style arrays to functions</li>
+			<li>Overloading of << operator with custom class</li>
+			<li>Pointers arithmetic</li>
+		</ul>
+		<h3>Pointers to class functions members<a href="pages/ptr_to_fun_members.html" target="_blank">&#x1F517;</a>
+			</h2>
+		</h3>
 	</div>
 	<h2>Comparisons operators</h2>
 	<div class="indent">
-		<h3>Comparisons operators and C++20 three way comparison <a href="pages/comparisons.html" target="_blank">&#x1F517;</a></h2></h3>		
-	</div>	
+		<h3>Comparisons operators and C++20 three way comparison <a href="pages/comparisons.html"
+				target="_blank">&#x1F517;</a></h2>
+		</h3>
+	</div>
+	<h2>C++ Basics</h2>
+	<div class="indent">
+		<h3>Initialization<a href="pages/initialization.html" target="_blank">&#x1F517;</a></h3>
+		<ul>
+			<li>Default initialization</li>
+			<li>Copy initialization</li>
+			<li>Direct initialization</li>
+			<li>Array initialization</li>
+			<li>Uniform initializazion</li>
+			<li>Constructor delegation and explicit</li>
+		</ul>
+        <h3>Const qualifier<a href="pages/const_qualifier.html" target="_blank">&#x1F517;</a></h3>        
+	</div>
+<h2>Modern C++</h2>
+<div class="indent">
+<h3>Lambda <a href="pages/lambda.html" target="_blank">&#x1F517;</a></h3>
+<h3>Smart pointers <a href="pages/smart_pointers.html" target="_blank">&#x1F517;</a></h3>
+</div>
 
+<h2>Idioms/Patterns</h2>
+<div class="indent">
+    <h3>Functional interface <a href="pages/functional_iface.html" target="_blank">&#x1F517;</a></h3>
+</div>
+ </body>
 
-</body>
 </html>

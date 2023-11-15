@@ -1,0 +1,197 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
+<span style="color: #888888"> * To change this license header, choose License Headers in Project Properties.</span>
+<span style="color: #888888"> * To change this template file, choose Tools | Templates</span>
+<span style="color: #888888"> * and open the template in the editor.</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #888888">/* </span>
+<span style="color: #888888"> * File:   main.cpp</span>
+<span style="color: #888888"> * Author: leonardo</span>
+<span style="color: #888888"> *</span>
+<span style="color: #888888"> * Created on 1 novembre 2023, 18:36</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #557799">#include &lt;memory&gt;</span>
+<span style="color: #557799">#include &lt;string&gt;</span>
+<span style="color: #557799">#include &lt;cassert&gt;</span>
+<span style="color: #557799">#include &lt;vector&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Base</span> {
+<span style="color: #997700; font-weight: bold">public:</span>
+
+    Base(std<span style="color: #333333">::</span>string name) <span style="color: #333333">:</span> name(name) {
+    }
+
+    <span style="color: #008800; font-weight: bold">virtual</span> <span style="color: #333333">~</span>Base() {
+        cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;Base destroyed &quot;</span> <span style="color: #333333">&lt;&lt;</span> endl;
+    }
+
+    <span style="color: #008800; font-weight: bold">virtual</span> <span style="color: #333399; font-weight: bold">void</span> display() <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+    
+    
+    <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">set_name</span>(std<span style="color: #333333">::</span>string n)
+    {
+        name<span style="color: #333333">=</span>n;
+    }
+
+<span style="color: #997700; font-weight: bold">protected:</span>
+
+    std<span style="color: #333333">::</span>string name;
+
+};
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Foo</span> <span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">public</span> Base {
+<span style="color: #997700; font-weight: bold">public:</span>
+
+    Foo(std<span style="color: #333333">::</span>string name) <span style="color: #333333">:</span> Base(name) {
+
+    }  
+    
+    Foo()<span style="color: #333333">:</span>Foo(<span style="background-color: #fff0f0">&quot;non-name&quot;</span>)
+    {
+        cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;called Foo default ctor&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    }
+   
+    <span style="color: #333399; font-weight: bold">void</span> display() <span style="color: #008800; font-weight: bold">const</span> override {
+        cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;I&#39; am Foo &quot;</span> <span style="color: #333333">&lt;&lt;</span> name <span style="color: #333333">&lt;&lt;</span> endl;
+    }
+
+    <span style="color: #333333">~</span>Foo() {
+        cout <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;Foo &quot;</span> <span style="color: #333333">&lt;&lt;</span> name <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot; destroyed&quot;</span> <span style="color: #333333">&lt;&lt;</span> endl;
+    }
+
+};
+
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * Error cannot copy unique_ptr</span>
+<span style="color: #888888"> * @param ptr</span>
+<span style="color: #888888"> */</span>
+<span style="color: #888888">/*void use_ptr(std::unique_ptr&lt;Foo&gt; ptr)</span>
+<span style="color: #888888">{</span>
+<span style="color: #888888">    ...</span>
+<span style="color: #888888">}*/</span>
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">use_ptr</span>(std<span style="color: #333333">::</span>unique_ptr<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span> <span style="color: #333333">&amp;</span>ptr)
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Passed to function&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    ptr<span style="color: #333333">-&gt;</span>display();
+}
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * Shared ptrs can be passed by value</span>
+<span style="color: #888888"> * @param ptr</span>
+<span style="color: #888888"> */</span>
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">use_shared</span>(std<span style="color: #333333">::</span>shared_ptr<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span> ptr)
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;Passed shared ptr to function&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    ptr<span style="color: #333333">-&gt;</span>display();    
+}
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">FooFactory</span>
+{
+<span style="color: #997700; font-weight: bold">private:</span>
+    FooFactory()
+    {
+        
+    }
+
+<span style="color: #997700; font-weight: bold">public:</span>
+    
+    <span style="color: #008800; font-weight: bold">static</span> unique_ptr<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span> createCar()
+    {
+        <span style="color: #008800; font-weight: bold">return</span> std<span style="color: #333333">::</span>make_unique<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span>(<span style="background-color: #fff0f0">&quot;Car created from factrory&quot;</span>);
+    };   
+    
+    <span style="color: #008800; font-weight: bold">static</span> unique_ptr<span style="color: #333333">&lt;</span>Foo[]<span style="color: #333333">&gt;</span> createCars(<span style="color: #008800; font-weight: bold">const</span> std<span style="color: #333333">::</span>vector<span style="color: #333333">&lt;</span>std<span style="color: #333333">::</span>string<span style="color: #333333">&gt;</span> <span style="color: #333333">&amp;</span>names)
+    {
+        <span style="color: #008800; font-weight: bold">auto</span> ptrv<span style="color: #333333">=</span>make_unique<span style="color: #333333">&lt;</span>Foo[]<span style="color: #333333">&gt;</span>(names.size());
+        <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;i<span style="color: #333333">&lt;</span>names.size();<span style="color: #333333">++</span>i)
+        {
+            ptrv.get()[i].set_name(names[i]);            
+        }
+        <span style="color: #008800; font-weight: bold">return</span> ptrv;
+        
+    };
+        
+};
+
+<span style="color: #888888">/*</span>
+<span style="color: #888888"> * </span>
+<span style="color: #888888"> */</span>
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+    
+    std<span style="color: #333333">::</span>unique_ptr<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span> pfoo(<span style="color: #008800; font-weight: bold">new</span> Foo(<span style="background-color: #fff0f0">&quot;Test&quot;</span>));
+    
+    <span style="color: #888888">//call method</span>
+    pfoo<span style="color: #333333">-&gt;</span>display();
+    
+    <span style="color: #888888">//get the raw ptr</span>
+    Foo <span style="color: #333333">*</span>raw_foo<span style="color: #333333">=</span>pfoo.get();
+    <span style="color: #008800; font-weight: bold">if</span> (raw_foo<span style="color: #333333">!=</span>nullptr)
+    {
+        raw_foo<span style="color: #333333">-&gt;</span>display();
+    }
+    
+    <span style="color: #888888">//destroy previous pointer ad reassign a new pointer</span>
+    pfoo.reset(<span style="color: #008800; font-weight: bold">new</span> Foo(<span style="background-color: #fff0f0">&quot;Test2&quot;</span>));
+    
+    pfoo<span style="color: #333333">-&gt;</span>display();
+    
+    <span style="color: #888888">//std::unique_ptr&lt;Foo&gt; pfoo2=pfoo; error unique pointer cannot be assigned    </span>
+    
+    use_ptr(pfoo);
+    
+    <span style="color: #888888">//using move to transfer ownership</span>
+    
+    std<span style="color: #333333">::</span>unique_ptr<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span> pfoo3<span style="color: #333333">=</span>std<span style="color: #333333">::</span>move(pfoo);
+    
+    assert(pfoo.get()<span style="color: #333333">==</span>nullptr); <span style="color: #888888">//ownership transferred to pfoo3</span>
+    
+
+    <span style="color: #888888">//array of objects  </span>
+    
+    <span style="color: #008800; font-weight: bold">auto</span> pfoos<span style="color: #333333">=</span>std<span style="color: #333333">::</span>make_unique<span style="color: #333333">&lt;</span>Foo[]<span style="color: #333333">&gt;</span>(<span style="color: #0000DD; font-weight: bold">2</span>); <span style="color: #888888">//created an array of Foo with nullptr that must be initialized</span>
+    
+    Foo p<span style="color: #333333">=</span>pfoos.get()[<span style="color: #0000DD; font-weight: bold">0</span>];
+    
+    p.display();
+    
+    <span style="color: #008800; font-weight: bold">auto</span> pfoos2<span style="color: #333333">=</span>std<span style="color: #333333">::</span>make_unique<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">*</span>[]<span style="color: #333333">&gt;</span>(<span style="color: #0000DD; font-weight: bold">2</span>); 
+    
+    std<span style="color: #333333">::</span>unique_ptr<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span> psmart<span style="color: #333333">=</span>std<span style="color: #333333">::</span>unique_ptr<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span>(<span style="color: #008800; font-weight: bold">new</span> Foo(<span style="background-color: #fff0f0">&quot;inside array&quot;</span>));
+    
+    pfoos2.get()[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">=</span>psmart.get();
+    
+    <span style="color: #008800; font-weight: bold">auto</span> pcar<span style="color: #333333">=</span>FooFactory<span style="color: #333333">::</span>createCar();
+    
+    pcar<span style="color: #333333">-&gt;</span>display();
+    
+    <span style="color: #888888">//shared ptr</span>
+    
+    <span style="color: #008800; font-weight: bold">auto</span> sfoo<span style="color: #333333">=</span>std<span style="color: #333333">::</span>make_shared<span style="color: #333333">&lt;</span>Foo<span style="color: #333333">&gt;</span>(<span style="background-color: #fff0f0">&quot;Shared foo&quot;</span>);
+    
+    sfoo<span style="color: #333333">-&gt;</span>display();
+    
+    <span style="color: #008800; font-weight: bold">auto</span> sfoo2<span style="color: #333333">=</span>sfoo;
+    
+    <span style="color: #888888">//sfoo and sfoo2 reference the same object</span>
+    assert(sfoo.get()<span style="color: #333333">!=</span> nullptr);
+    assert(sfoo2.get()<span style="color: #333333">!=</span>nullptr);
+    
+    use_shared(sfoo2);
+    
+    unique_ptr<span style="color: #333333">&lt;</span>Foo[]<span style="color: #333333">&gt;</span> cars<span style="color: #333333">=</span>FooFactory<span style="color: #333333">::</span>createCars({<span style="background-color: #fff0f0">&quot;A&quot;</span>,<span style="background-color: #fff0f0">&quot;B&quot;</span>,<span style="background-color: #fff0f0">&quot;C&quot;</span>});
+        
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;end&quot;</span><span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #888888">//managed objects are destroyed</span>
+    
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+

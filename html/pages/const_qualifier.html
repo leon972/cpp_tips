@@ -1,0 +1,82 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/**</span>
+<span style="color: #888888">Using const qualifier</span>
+<span style="color: #888888">*/</span>
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> std<span style="color: #333333">::</span>cout,std<span style="color: #333333">::</span>endl;
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Foo</span>
+{
+<span style="color: #997700; font-weight: bold">public:</span>
+    
+    Foo(<span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> <span style="color: #333333">*</span>text)<span style="color: #333333">:</span>data(text)
+    {
+        
+    }
+    
+    <span style="color: #333399; font-weight: bold">void</span> display() <span style="color: #008800; font-weight: bold">const</span>
+    {
+        cout<span style="color: #333333">&lt;&lt;</span>data<span style="color: #333333">&lt;&lt;</span>endl;        
+    }
+    
+    <span style="color: #333399; font-weight: bold">void</span> set(<span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> <span style="color: #333333">*</span>text)
+    {
+        data<span style="color: #333333">=</span>text;
+    }
+    
+    
+<span style="color: #997700; font-weight: bold">private:</span>
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">char</span> <span style="color: #333333">*</span>data;
+};
+
+<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">process_foo</span>(<span style="color: #008800; font-weight: bold">const</span> Foo <span style="color: #333333">&amp;</span>foo)
+{
+    foo.display(); <span style="color: #888888">//ok è const</span>
+    <span style="color: #888888">//foo.set(&quot;xxx&quot;); errore perché foo è const</span>
+}
+
+<span style="color: #888888">/*</span>
+<span style="color: #888888"> * </span>
+<span style="color: #888888"> */</span>
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #008800; font-weight: bold">auto</span> a<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">11</span>; <span style="color: #888888">//const int</span>
+    <span style="color: #888888">//a=9; errore!</span>
+    <span style="color: #008800; font-weight: bold">const</span> Foo foo{<span style="background-color: #fff0f0">&quot;Foo!&quot;</span>};    
+    foo.display(); <span style="color: #888888">//ok perché display è const</span>
+    process_foo(foo);
+    
+    <span style="color: #888888">//foo.set(&quot;Test&quot;); //errore perché foo è dichiarata const    </span>
+    <span style="color: #008800; font-weight: bold">auto</span> ref_a<span style="color: #333333">=&amp;</span>a; <span style="color: #888888">//const ref to a    </span>
+    cout<span style="color: #333333">&lt;&lt;</span>a<span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #888888">//a=99; errore perché ref_a è const reference    </span>
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span>pa<span style="color: #333333">=&amp;</span>a; <span style="color: #888888">//a pointer to const int (punta a un oggetto costante)</span>
+    <span style="color: #888888">//*pa=88; //errore perché punta ad un valore costante</span>
+    pa<span style="color: #333333">=</span>nullptr; <span style="color: #888888">//ok perché il puntantore non è constate</span>
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span> <span style="color: #008800; font-weight: bold">const</span> pa1  <span style="color: #333333">=&amp;</span>a; <span style="color: #888888">//const pointer to const data</span>
+    <span style="color: #888888">//*pa1=99; errore</span>
+    <span style="color: #888888">//pa1=nullptr; errore perché il puntato è constante</span>
+    <span style="color: #333399; font-weight: bold">int</span> c<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">100</span>;
+    
+    <span style="color: #333399; font-weight: bold">int</span> <span style="color: #333333">*</span><span style="color: #008800; font-weight: bold">const</span> pa2<span style="color: #333333">=&amp;</span>c; <span style="color: #888888">//a const pointer to non-const data</span>
+    
+    <span style="color: #333333">*</span>pa2<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">101</span>; <span style="color: #888888">//ok perché punta a dati non costanti</span>
+    cout<span style="color: #333333">&lt;&lt;</span>c<span style="color: #333333">&lt;&lt;</span>endl; <span style="color: #888888">//101</span>
+    
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">int</span> v[]<span style="color: #333333">=</span>{<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>};
+    <span style="color: #888888">//v[1]=99; errore array di valori costanti</span>
+    <span style="color: #008800; font-weight: bold">const</span> <span style="color: #333399; font-weight: bold">int</span> m[][<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">=</span>{{<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>},{<span style="color: #0000DD; font-weight: bold">11</span>,<span style="color: #0000DD; font-weight: bold">12</span>}};
+    cout<span style="color: #333333">&lt;&lt;</span>m[<span style="color: #0000DD; font-weight: bold">1</span>][<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">&lt;&lt;</span>endl;
+    cout<span style="color: #333333">&lt;&lt;</span>m[<span style="color: #0000DD; font-weight: bold">0</span>][<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #888888">//m[1][1]=9; errore perché const</span>
+    
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+

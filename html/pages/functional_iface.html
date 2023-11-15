@@ -1,0 +1,72 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/**</span>
+<span style="color: #888888"> * Functional interface</span>
+<span style="color: #888888"> */</span>
+
+<span style="color: #557799">#include &lt;cstdlib&gt;</span>
+<span style="color: #557799">#include &lt;functional&gt;</span>
+<span style="color: #557799">#include &lt;iostream&gt;</span>
+<span style="color: #557799">#include &lt;vector&gt;</span>
+
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> std;
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">IFunction</span>
+{
+    <span style="color: #997700; font-weight: bold">public:</span>
+        <span style="color: #008800; font-weight: bold">virtual</span> <span style="color: #333399; font-weight: bold">double</span> <span style="color: #008800; font-weight: bold">operator</span> () (<span style="color: #333399; font-weight: bold">double</span> v) noexcept<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;    
+        <span style="color: #008800; font-weight: bold">virtual</span> <span style="color: #333333">~</span>IFunction() {}
+};
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">SquareFn</span><span style="color: #333333">:</span><span style="color: #008800; font-weight: bold">public</span> IFunction
+{
+<span style="color: #997700; font-weight: bold">public:</span>
+    <span style="color: #333399; font-weight: bold">double</span> <span style="color: #008800; font-weight: bold">operator</span> () (<span style="color: #333399; font-weight: bold">double</span> v) noexcept override {
+        <span style="color: #008800; font-weight: bold">return</span> v<span style="color: #333333">*</span>v;        
+    }   
+    <span style="color: #333333">~</span>SquareFn()
+    {        
+    }
+};
+
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * Using functional</span>
+<span style="color: #888888"> * @param fn</span>
+<span style="color: #888888"> * @param values</span>
+<span style="color: #888888"> * @return </span>
+<span style="color: #888888"> */</span>
+<span style="color: #333399; font-weight: bold">double</span> <span style="color: #0066BB; font-weight: bold">use_fn</span>(IFunction <span style="color: #333333">&amp;</span>fn,<span style="color: #008800; font-weight: bold">const</span> std<span style="color: #333333">::</span>vector<span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">double</span><span style="color: #333333">&gt;</span> <span style="color: #333333">&amp;</span>values)
+{
+    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">auto</span> v<span style="color: #333333">:</span>values)    
+    {
+        cout<span style="color: #333333">&lt;&lt;</span>v<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot; -&gt; &quot;</span><span style="color: #333333">&lt;&lt;</span>fn(v)<span style="color: #333333">&lt;&lt;</span>endl;
+    }
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * Passing functional</span>
+<span style="color: #888888"> * @param fn</span>
+<span style="color: #888888"> * @param v</span>
+<span style="color: #888888"> * @return </span>
+<span style="color: #888888"> */</span>
+<span style="color: #333399; font-weight: bold">double</span> <span style="color: #0066BB; font-weight: bold">use_fn2</span>(std<span style="color: #333333">::</span>function<span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">double</span>(<span style="color: #333399; font-weight: bold">double</span>)<span style="color: #333333">&gt;</span> fn,<span style="color: #333399; font-weight: bold">double</span> v)
+{
+    cout<span style="color: #333333">&lt;&lt;</span><span style="background-color: #fff0f0">&quot;use_fn2-&gt;&quot;</span><span style="color: #333333">&lt;&lt;</span>fn(v)<span style="color: #333333">&lt;&lt;</span>endl;
+    <span style="color: #008800; font-weight: bold">return</span> fn(v);
+}
+
+
+<span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">main</span>(<span style="color: #333399; font-weight: bold">int</span> argc, <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">**</span> argv) {
+    
+    SquareFn sq;
+    
+    cout<span style="color: #333333">&lt;&lt;</span>sq(<span style="color: #6600EE; font-weight: bold">12.0</span>)<span style="color: #333333">&lt;&lt;</span>endl;
+    
+    <span style="color: #008800; font-weight: bold">auto</span> y<span style="color: #333333">=</span>use_fn2(sq,<span style="color: #0000DD; font-weight: bold">9</span>);
+    
+    use_fn(sq,{<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5</span>});
+    
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+}
+</pre></div>
+
